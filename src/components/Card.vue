@@ -1,0 +1,80 @@
+<template>
+  <div class="card">
+    <div class="card-body">
+      <p>{{repo.name}}</p>
+      <a :href="repo.html_url">Go to this repo!</a>
+    </div>
+
+    <div class="stars">{{numFormatter(repo.stargazers_count)}}</div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Card",
+  props: {
+    repo: Object
+  },
+  methods: {
+    numFormatter: num => {
+      return num > 999 ? (num / 1000).toFixed(1) + "k" : num;
+    }
+  }
+};
+</script>
+
+<style scoped lang="scss">
+@import "../scss/mixins.scss";
+@import "../scss/variables.scss";
+
+.card {
+  @include flexCenter(space-between);
+  height: auto;
+  width: 70vh;
+  padding: 15px;
+  margin-bottom: 2rem;
+  border: 1px solid $borderColorCard;
+
+  &:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.24);
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}
+
+.stars {
+  height: 4rem;
+  width: 4rem;
+  @include flexCenter(center);
+  font-weight: 600;
+  background-image: url(/images/star-solid.svg);
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 600px) {
+  .card {
+    height: auto;
+    width: 40vh;
+    font-size: 0.8rem;
+  }
+
+  .stars {
+    height: 3rem;
+    width: 3rem;
+    font-size: 0.7rem;
+  }
+}
+</style>
