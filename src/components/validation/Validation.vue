@@ -1,39 +1,38 @@
 <template>
-  <div class="error">
-    <img src="/images/bunny-error.png" alt="error" />
-    <p>Sorry, We couldn't find that user! Are you sure you typed that right?</p>
+  <div class="validation">
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Error"
+  name: "Validation"
 };
 </script>
 
 <style scoped lang="scss">
 @import "../../scss/mixins.scss";
 
-.error {
+.validation {
+  padding: 3rem 3rem 7rem 3rem;
   @include flexCenter(center);
   flex-wrap: wrap;
-  padding: 3rem 3rem 7rem 3rem;
 
   img {
     height: 40vh;
   }
 
   p {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: 600;
-    width: 30vw;
+    width: 50vh;
     text-align: center;
     text-transform: uppercase;
   }
 }
 
 @media (max-width: 600px) {
-  .error {
+  .validation {
     padding: 0px 0px 7rem 0px;
 
     img {

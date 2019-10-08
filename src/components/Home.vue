@@ -15,10 +15,16 @@
           <Card v-for="(repo, idx) in user" :key="idx" :repo="repo" />
         </div>
         <div v-else>
-          <NotFound />
+          <Validation>
+            <img src="/images/empty_boxes.png" alt="Not found" />
+            <p>This user has no repositories!</p>
+          </Validation>
         </div>
       </section>
-      <Error v-if="error">Error</Error>
+      <Validation v-if="error">
+        <img src="/images/bunny-error.png" alt="error" />
+        <p>Sorry, We couldn't find that user! Are you sure you typed that right?</p>
+      </Validation>
       <Loader v-if="loading" />
     </main>
   </div>
@@ -29,8 +35,7 @@ import axios from "axios";
 import Navbar from "./Navbar";
 import Search from "./Search";
 import Card from "./Card";
-import NotFound from "./validation/NotFound";
-import Error from "./validation/Error";
+import Validation from "./validation/Validation";
 import Loader from "./validation/Loader";
 
 export default {
@@ -39,8 +44,9 @@ export default {
     Navbar,
     Search,
     Card,
-    Error,
-    NotFound,
+    Validation,
+    // Error,
+    // NotFound,
     Loader
   },
   data() {
